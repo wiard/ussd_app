@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>USSD Simulator – Murende</title>
+  <style>
+    body {
+      font-family: system-ui, Arial;
+      background: #f5f5f5;
+      padding: 40px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    }
+    input, button {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    pre {
+      background: #111;
+      color: #0f0;
+      padding: 15px;
+      margin-top: 15px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>USSD Simulator</h2>
+
+  <p>Enter USSD text (e.g. <code>1</code>, <code>1*2</code>, <code>8*My Shop*1*1</code>)</p>
+
+  <input id="text" placeholder="USSD text" />
+  <button onclick="send()">Send</button>
+
+  <pre id="out">Waiting…</pre>
+</div>
+
+<script>
+async function send() {
+  const text = document.getElementById('text').value;
+
+  const res = await fetch('/ussd', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({
+      sessionId: 'browser-demo',
+      phoneNumber: '+254700000000',
+      text: text
+    })
+  });
+
+  document.getElementById('out').textContent = await res.text();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Secrets / environment
+.env
+*.env
+
+# Database & backups
+market.db
+market.db.*
+market.sql*
+*.sql
+*.bak
+*.backup*
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtualenv
+.venv/
+
+# OS / editor
+.DS_Store
+*.swp
+
+# --- local backups / experiments ---
+app.py.*
+*.tar.gz
